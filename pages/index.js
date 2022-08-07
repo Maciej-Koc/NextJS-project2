@@ -21,14 +21,11 @@ const DUMMY_MEETUPS = [
 ];
 
 export default function HomePage(props) {
-  return <MeetupList meetups={props.meetups} />;
-}
+  const [loadedMeetups, setLoadedMeetups] = useState([]);
 
-//reserved name that NextJS looks for and executes before prerendering process, and will do static props before comp function
-export async function getStaticProps() {
-  return {
-    props: {
-      meetups: DUMMY_MEETUPS,
-    },
-  };
+  useEffect(() => {
+    setLoadedMeetups(DUMMY_MEETUPS);
+  }, []);
+
+  return <MeetupList meetups={loadedMeetups} />;
 }
